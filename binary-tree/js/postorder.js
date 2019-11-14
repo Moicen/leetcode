@@ -3,34 +3,34 @@ const generate = require('./builder')
 
 
 const recur = (node, result) => {
-    if(!node) return;
-    let { left, right } = node;
-    if(left){
+    if (!node) return;
+    let {left, right} = node;
+    if (left) {
         recur(left, result);
     }
-    if(right){
+    if (right) {
         recur(right, result);
     }
-    result.push(node);
+    result.push(node.val);
 }
 
 const iterate = (root) => {
     let node = root, result = [], stack = [];
     stack.push(node)
-    while(node){
+    while (node) {
         let {left, right} = node;
-        if(left && !result.includes(left)){
+        if (left && !result.includes(left)) {
             stack.push(left);
             node = left;
             continue;
         }
-        if(right && !result.includes(right)){
+        if (right && !result.includes(right)) {
             stack.push(right);
             node = right;
             continue;
         }
 
-        if(!result.includes(node)) result.push(node)
+        if (!result.includes(node)) result.push(node)
 
         node = stack.pop();
     }

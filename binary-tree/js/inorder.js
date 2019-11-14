@@ -7,7 +7,7 @@ const recur = (node, result) => {
     if(left){
         recur(left, result);
     }
-    result.push(node)
+    result.push(node.val)
     if(right){
         recur(right, result);
     }

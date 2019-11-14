@@ -7,9 +7,9 @@
 `npm run exec subject=xxx task=xxx depth=xxx`
 
 2. 参数说明：
-- `subject | s`: 要执行的主题，如'binary-tree`(二叉树)
+- `subject | s`: 要执行的主题，如`binary-tree`(二叉树)
 - `task | t`: 要执行的具体任务，如`preorder`（先序遍历）
-- `depth | d`: 随机生成的树的最大层数，如 5。如不提供此参数，则默认为 3 
+- `depth | d`: 随机生成的树的最大层数，如 `5`。如不提供此参数，则默认为 `3` 
 
 3. 示例：
 
