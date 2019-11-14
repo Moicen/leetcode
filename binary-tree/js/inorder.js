@@ -1,5 +1,4 @@
-const log = require('../../utils/log')
-const generate = require('./builder')
+const run = require('./runner');
 
 const recur = (node, result) => {
     if(!node) return;
@@ -47,14 +46,4 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-const run = () => {
-    let tree = generate();
-    log('Tree : ')
-    log(tree);
-    log(`Ineorder travel with recursive: `);
-    log(recurWalk(tree), true)
-    log('Ineorder travel with iterate: ');
-    log(iterateWalk(tree), true)
-};
-
-run();
+run('Ineorder', recurWalk, iterateWalk);
