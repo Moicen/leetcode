@@ -47,4 +47,4 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-run('Postorder', recurWalk, iterateWalk);
+run('Post order', recurWalk, iterateWalk);
