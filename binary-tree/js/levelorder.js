@@ -23,7 +23,7 @@ const iterate = (root) => {
             if (left) current.push(left);
             if (right) current.push(right);
         });
-        if(current.length > 0){
+        if (current.length > 0) {
             result.push(current.map(x => x.val));
         }
         parent = current;
@@ -45,4 +45,5 @@ const iterateWalk = tree => {
 };
 
 
-run('Level order', recurWalk, iterateWalk);
+run([{desc: 'Level order with recur', exec: recurWalk},
+    {desc: 'Level order with iterate', exec: iterateWalk}]);

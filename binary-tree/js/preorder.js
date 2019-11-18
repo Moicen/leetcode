@@ -45,4 +45,5 @@ const iterateWalk = tree => {
 };
 
 
-run('Pre order', recurWalk, iterateWalk);
+run([{desc: 'Pre order with recur', exec: recurWalk},
+    {desc: 'Pre order with iterate', exec: iterateWalk}]);

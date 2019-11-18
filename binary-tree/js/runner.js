@@ -2,18 +2,15 @@ const log = require('../../utils/log')
 const generate = require('./builder')
 
 
-const run = (name, recurWalk, iterateWalk) => {
+const run = (solutions) => {
     let tree = generate();
     log('Tree : ')
     log(tree, true);
-    if (recurWalk) {
-        log(`${name} travel with recursive: `)
-        log(recurWalk(tree))
-    }
-    if (iterateWalk) {
-        log(`${name} travel with iterate: `)
-        log(iterateWalk(tree))
-    }
+
+    solutions.forEach(({desc, exec}) => {
+        log(desc);
+        log(exec(tree))
+    });
 };
 
 module.exports = run;
