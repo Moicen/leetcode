@@ -26,36 +26,25 @@ const tree2 = {
     val: 1
 };
 
-
-const turnover = (node) => {
-    if (!node) return node;
-    let {left = null, right = null, val} = node;
-    return {
-        left: turnover(right),
-        right: turnover(left),
-        val
-    };
-};
-
-const isSame = (origin, target) => {
+const recur = (origin, target) => {
     if (origin && target) {
         let same = origin.val === target.val;
-        return same && isSame(origin.left, target.left) && isSame(origin.right, target.right);
+        return same && recur(origin.left, target.right) && recur(origin.right, target.left);
     }
     return !origin && !target;
 };
-
 
 const isSymmetric = function (root) {
     log("Tree: ");
     log(root, true);
     if (!root) return true;
-    return isSame(root, turnover(root));
+    return recur(root.left, root.right);
 };
 
+
 run([
-    {desc: 'Test symmetric tree1 (use mirror)', exec: () => isSymmetric(tree1)},
-    {desc: 'Test symmetric tree2 (use mirror)', exec: () => isSymmetric(tree2)}
+    {desc: 'Test symmetric tree1 (use recur)', exec: () => isSymmetric(tree1)},
+    {desc: 'Test symmetric tree2 (use recur)', exec: () => isSymmetric(tree2)},
 ]);
 
 
