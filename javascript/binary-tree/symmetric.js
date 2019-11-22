@@ -1,5 +1,11 @@
 const run = require('./runner');
-const log = require('../../utils/log');
+const log = require('../utils/log');
+
+/**
+ * 判断二叉树是否对称
+ * 对称特性：left.left == right.right, left.right == right.left
+ */
+
 const tree1 = {
     left: {
         left: {val: 3},
@@ -13,7 +19,6 @@ const tree1 = {
     },
     val: 1
 };
-
 const tree2 = {
     left: {
         left: {val: 2},
@@ -25,10 +30,6 @@ const tree2 = {
     },
     val: 1
 };
-
-const tree3 = {
-
-}
 
 const recur = (origin, target) => {
     if (origin && target) {

@@ -1,4 +1,4 @@
-const read = require('../../utils/arg').read;
+const read = require('../utils/arg').read;
 
 
 class TreeNode {

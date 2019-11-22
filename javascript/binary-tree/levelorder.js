@@ -1,5 +1,11 @@
 const run = require('./runner');
 
+/**
+ * 二叉树层序遍历（广度优先）
+ * 层序：从上到下每一层从左到右
+ */
+
+
 const recur = (nodes, result) => {
     if (nodes.length === 0) return;
     result.push(nodes.map(x => x.val));

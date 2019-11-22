@@ -1,41 +1,43 @@
 const run = require('./runner');
 
+/**
+ * 二叉树先序遍历
+ * 先序：root -> left -> right
+ */
+
 const recur = (node, result) => {
     if (!node) return;
-    let {left, right} = node;
-    if (left) {
-        recur(left, result);
-    }
-    if (right) {
-        recur(right, result);
-    }
     result.push(node.val);
-}
+    if (node.left) {
+        recur(node.left, result);
+    }
+    if (node.right) {
+        recur(node.right, result);
+    }
+};
 
 const iterate = (root) => {
+
     let node = root, result = [], stack = [];
-    stack.push(node);
+    if (!node) return result;
+
     while (node) {
+        if (!result.includes(node)) result.push(node);
         let {left, right} = node;
         if (left && !result.includes(left)) {
-            stack.push(left);
+            stack.push(node);
             node = left;
             continue;
         }
         if (right && !result.includes(right)) {
-            if(!stack.includes(node)){
-                stack.push(node);
-            }
-            stack.push(right);
+            stack.push(node);
             node = right;
             continue;
         }
-        if(!result.includes(node)) result.push(node)
         node = stack.pop();
     }
-
-    return result.map(x => x.val)
-}
+    return result.map(n => n.val);
+};
 
 const recurWalk = tree => {
     const result = [];
@@ -47,5 +49,6 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-run([{desc: 'Post order with recur', exec: recurWalk},
-    {desc: 'Post order with iterate', exec: iterateWalk}]);
+
+run([{desc: 'Pre order with recur', exec: recurWalk},
+    {desc: 'Pre order with iterate', exec: iterateWalk}]);

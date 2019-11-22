@@ -1,5 +1,10 @@
 const run = require('./runner');
 
+/**
+ * 二叉树中序遍历
+ * 中序：left -> root -> right
+ */
+
 const recur = (node, result) => {
     if(!node) return;
     let {left, right} = node;
