@@ -1,5 +1,5 @@
-const log = require('../utils/log')
-const generate = require('./builder')
+const log = require('../utils/log');
+const generate = require('./builder');
 
 
 const run = (solutions, randomData = true) => {

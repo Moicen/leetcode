@@ -14,15 +14,15 @@ const recur = (nodes, result) => {
         let {left, right} = node;
         if (left) children.push(left);
         if (right) children.push(right);
-    })
+    });
     recur(children, result)
 };
 
 const iterate = (root) => {
     let parent = [], current = [], result = [];
     if (!root) return result;
-    parent.push(root)
-    result.push(parent.map(x => x.val))
+    parent.push(root);
+    result.push(parent.map(x => x.val));
     while (parent.length) {
         parent.forEach(node => {
             let {left, right} = node;
@@ -51,5 +51,7 @@ const iterateWalk = tree => {
 };
 
 
-run([{desc: 'Level order with recur', exec: recurWalk},
-    {desc: 'Level order with iterate', exec: iterateWalk}]);
+run([
+    {desc: 'Level order with recur', exec: recurWalk},
+    {desc: 'Level order with iterate', exec: iterateWalk}
+]);

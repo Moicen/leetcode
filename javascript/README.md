@@ -14,10 +14,10 @@
 3. 示例：
 
 ```shell script
-$ npm run exec s=binary-tree t=preorder d=5
+$ npm run exec s=binary-tree t=pre-order d=5
 
 > leetcode@1.0.0 exec /Users/moicen/Workspace/alchemy-studio/leetcode
-> node utils/cmd.js "s=binary-tree" "t=preorder" "d=5"
+> node utils/cmd.js "s=binary-tree" "t=pre-order" "d=5"
 
 "Tree : "
 {

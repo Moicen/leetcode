@@ -16,7 +16,7 @@ const recur = (node, result) => {
         recur(right, result);
     }
     result.push(node.val);
-}
+};
 
 const iterate = (root) => {
     let node = root, result = [], stack = [];
@@ -29,19 +29,19 @@ const iterate = (root) => {
             continue;
         }
         if (right && !result.includes(right)) {
-            if(!stack.includes(node)){
+            if (!stack.includes(node)) {
                 stack.push(node);
             }
             stack.push(right);
             node = right;
             continue;
         }
-        if(!result.includes(node)) result.push(node)
+        if (!result.includes(node)) result.push(node)
         node = stack.pop();
     }
 
     return result.map(x => x.val)
-}
+};
 
 const recurWalk = tree => {
     const result = [];
@@ -53,5 +53,7 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-run([{desc: 'Post order with recur', exec: recurWalk},
-    {desc: 'Post order with iterate', exec: iterateWalk}]);
+run([
+    {desc: 'Post order with recur', exec: recurWalk},
+    {desc: 'Post order with iterate', exec: iterateWalk}
+]);

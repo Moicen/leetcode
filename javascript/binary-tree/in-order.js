@@ -6,32 +6,32 @@ const run = require('./runner');
  */
 
 const recur = (node, result) => {
-    if(!node) return;
+    if (!node) return;
     let {left, right} = node;
-    if(left){
+    if (left) {
         recur(left, result);
     }
-    result.push(node.val)
-    if(right){
+    result.push(node.val);
+    if (right) {
         recur(right, result);
     }
-}
+};
 
 const iterate = (root) => {
     const result = [], stack = [];
-    if(!root) return result;
+    if (!root) return result;
     let node = root;
     stack.push(node);
-    while(node){
-        let { left, right } = node;
-        if(left && !result.includes(left)){
+    while (node) {
+        let {left, right} = node;
+        if (left && !result.includes(left)) {
             stack.push(node);
             node = left;
             continue;
         }
-        if(!result.includes(node)) result.push(node);
+        if (!result.includes(node)) result.push(node);
 
-        if(right && !result.includes(right)){
+        if (right && !result.includes(right)) {
             stack.push(node);
             node = right;
             continue;
@@ -39,7 +39,7 @@ const iterate = (root) => {
         node = stack.pop();
     }
     return result.map(x => x.val);
-}
+};
 
 const recurWalk = tree => {
     const result = [];
@@ -51,5 +51,7 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-run([{desc: 'In order with recur', exec: recurWalk},
-    {desc: 'Post order with iterate', exec: iterateWalk}]);
+run([
+    {desc: 'In order with recur', exec: recurWalk},
+    {desc: 'Post order with iterate', exec: iterateWalk}
+]);
