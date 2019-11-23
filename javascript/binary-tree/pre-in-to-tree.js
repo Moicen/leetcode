@@ -71,4 +71,4 @@ run([
         desc: 'Construct tree from in order and post order result with iterate: ',
         exec: () => iterateWalk(PreOrderOutput, InOrderOutput)
     }
-]);
+], false);

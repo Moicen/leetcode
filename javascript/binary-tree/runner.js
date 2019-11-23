@@ -9,9 +9,9 @@ const run = (solutions, randomData = true) => {
         log('Tree : ');
         log(tree, true);
     }
-    solutions.forEach(({desc, exec}) => {
+    solutions.forEach(({desc, exec, json = false}) => {
         log(desc);
-        log(exec(tree))
+        log(exec(tree), json)
     });
 };
 
