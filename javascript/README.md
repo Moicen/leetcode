@@ -1,7 +1,9 @@
 # leetcode习题集
 
-## Javascript版使用：
+## 章节
+1. [二叉树](binary-tree/README.md)
 
+## 使用
 1. 命令：
 
 `npm run exec subject=xxx task=xxx depth=xxx`
