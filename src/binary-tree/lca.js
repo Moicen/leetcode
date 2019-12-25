@@ -57,14 +57,24 @@ const find = (p, q) => {
     return p && q ? p : null;
 };
 
+const clean = (node) => {
+    if (node) {
+        delete node.parent;
+        delete node.depth;
+        clean(node.left);
+        clean(node.right);
+    }
+}
+
 const lca = (tree, p, q) => {
-    if (!tree || !p || !q) return null;
+    if (!tree) return null;
     p = {val: p}, q = {val: q};
     let {x, y} = prepare([tree], p, q);
-    return find(x, y);
+    let node = find(x, y);
+    clean(node);
+    return node;
 };
 
-
-run([
-    {desc: 'get lowest common ancestor', exec: () => lca(Tree, 5, 4)},
-]);
+module.exports = {
+    lca
+};

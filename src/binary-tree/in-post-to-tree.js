@@ -4,11 +4,6 @@
  *
  */
 
-const run = require("./runner");
-
-const InOrderOutput = [2, 3, 1];
-const PostOrderOutput = [3, 2, 1];
-
 /**
  * 根据中序和后序遍历结果构建树
  * 中序：left -> root -> right
@@ -69,14 +64,6 @@ const iterateWalk = (inValues, postValues) => {
     return postOrderList[postOrderList.length - 1] || null;
 };
 
-
-run([
-    {
-        desc: 'Construct tree from in order and post order result with recur: ',
-        exec: () => recurWalk(InOrderOutput, PostOrderOutput)
-    },
-    {
-        desc: 'Construct tree from in order and post order result with iterate: ',
-        exec: () => iterateWalk(InOrderOutput, PostOrderOutput)
-    }
-], false);
+module.exports = {
+    recurWalk, iterateWalk
+};

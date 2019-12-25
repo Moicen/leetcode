@@ -35,8 +35,6 @@
  Output: true
  */
 
-const run = require('./runner');
-
 const isValid = (s) => {
     let regex = /(\(\))|(\{\})|(\[\])/g;
     while (regex.test(s)){
@@ -45,10 +43,6 @@ const isValid = (s) => {
     return !s;
 };
 
-
-run([
-    {desc: "Valid Parentheses of ()[]{}: ", exec: () => isValid('()[]{}')},
-    {desc: "Valid Parentheses of {[]}: ", exec: () => isValid("{[]}")},
-    {desc: "Valid Parentheses of {(})[]: ", exec: () => isValid("{(})[]")},
-    {desc: "Valid Parentheses of : {[]}({})[{()}]", exec: () => isValid("{[]}({})[{()}]")},
-]);
+module.exports = {
+    isValid
+};

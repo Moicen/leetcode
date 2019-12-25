@@ -4,8 +4,6 @@
  *
  */
 
-const run = require('./runner');
-
 const b2t = (node, depth) => {
     if (!node) return depth;
     depth += 1;
@@ -47,7 +45,7 @@ const b2tWalk = (tree) => {
     return b2t(tree, 0);
 };
 
-run([
-    {desc: 'Max depth with top-bottom', exec: t2bWalk},
-    {desc: 'Max depth with bottom-top', exec: b2tWalk}
-]);
+module.exports = {
+    t2bWalk, b2tWalk
+};
+

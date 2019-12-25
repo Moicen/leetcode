@@ -14,8 +14,6 @@
  */
 
 
-const run = require('./runner');
-
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -33,6 +31,6 @@ const twoSum = (nums, target) => {
     return result;
 };
 
-run([
-    {desc: "Two Sum: ", exec: () => twoSum([2, 7, 11, 15], 9)},
-]);
+module.exports = {
+    twoSum
+};

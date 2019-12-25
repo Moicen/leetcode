@@ -62,9 +62,19 @@ const serialize = (root) => {
         });
         nodes = children;
     }
-    return JSON.stringify(result);
+    let str = JSON.stringify(result);
+    clean(root);
+    return str;
 };
 
+const clean = (node) => {
+    if (!node) return;
+    delete node.id;
+    delete node.parent;
+    delete node.side;
+    clean(node.left);
+    clean(node.right);
+};
 
 /**
  * Decodes your encoded data to tree.
@@ -72,7 +82,6 @@ const serialize = (root) => {
  * @param {string} data
  * @return {TreeNode}
  */
-
 const deserialize = (data) => {
     let nodes = JSON.parse(data);
     if (nodes.length === 0) return null;
@@ -83,13 +92,10 @@ const deserialize = (data) => {
         p[side] = node;
         parents.push(node);
     });
+    clean(root);
     return root;
 };
-/**
- * Your functions will be called as such:
- * deserialize(serialize(root));
- */
 
-run([
-    {desc: 'deserialize binary tree', exec: (tree) => deserialize(serialize(tree))}
-]);
+module.exports = {
+    serialize, deserialize
+};

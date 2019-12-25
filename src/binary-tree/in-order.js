@@ -57,7 +57,7 @@ const iterateWalk = tree => {
     return iterate(tree);
 };
 
-run([
-    {desc: 'In order with recur', exec: recurWalk},
-    {desc: 'Post order with iterate', exec: iterateWalk}
-]);
+module.exports = {
+    recurWalk, iterateWalk
+};
+

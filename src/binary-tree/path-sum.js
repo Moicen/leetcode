@@ -76,12 +76,10 @@ const iterateWalk = (tree) => {
     console.log("tree: ", tree)
     console.log('sum: ', sum);
     return iterate(tree, sum);
-}
+};
 
-run([
-    {desc: 'Check path sum with recur: ', exec: recurWalk},
-    {desc: 'Check path sum with iterate: ', exec: iterateWalk}
-]);
-
+module.exports = {
+    recur, iterate
+};
 
 

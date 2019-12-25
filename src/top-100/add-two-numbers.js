@@ -13,7 +13,6 @@
  *   Explanation: 342 + 465 = 807.
  *
  */
-const run = require('./runner');
 
 /**
  * Definition for singly-linked list.
@@ -62,8 +61,6 @@ const split = (digits) => {
  */
 const addTwoNumbers = (l1, l2) => {
     let first = assemble(l1), second = assemble(l2);
-    console.log('first: ', first)
-    console.log('second: ', second)
     let result = [], carry = 0;
     for (let i = 0; i < Math.max(first.length, second.length); i++) {
         let sum = (first[i] || 0) + (second[i] || 0);
@@ -74,14 +71,10 @@ const addTwoNumbers = (l1, l2) => {
         } else carry = 0;
         result[i] = sum;
     }
-    console.log('result: ', result)
     if (carry) result.push(1);
     return split(result);
 };
 
-let L1 = {val: 2, next: {val: 4, next: {val: 3, next: null}}};
-let L2 = {val: 5, next: {val: 6, next: {val: 4, next: null}}};
-
-run([
-    {desc: "Add Two Numbers: ", exec: () => addTwoNumbers(L1, L2)},
-]);
+module.exports = {
+    addTwoNumbers
+};
