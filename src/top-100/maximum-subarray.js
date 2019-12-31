@@ -33,7 +33,6 @@ const maxSubArray = (nums) => {
 };
 
 
-
 const loop = (nums, maxSum) => {
     // console.log('------------------loop nums: ', JSON.stringify(nums))
     // console.log('------max sum: ', maxSum)
@@ -58,7 +57,7 @@ const loop = (nums, maxSum) => {
         left += n;
         n = nums.shift()
     }
-    if(n !== undefined) nums.unshift(n);
+    if (n !== undefined) nums.unshift(n);
     if (left) nums.unshift(left);
     // console.log('left added: ', nums);
     maxSum.value = Math.max(left, maxSum.value)
@@ -74,12 +73,12 @@ const loop = (nums, maxSum) => {
     // console.log("left calc nums: ", nums);
     // step 4: sum right nums
     n = nums.pop();
-    while (n !== undefined && n >= 0){
+    while (n !== undefined && n >= 0) {
         right += n;
         n = nums.pop();
     }
-    if(n !== undefined) nums.push(n);
-    if(right) nums.push(right);
+    if (n !== undefined) nums.push(n);
+    if (right) nums.push(right);
     maxSum.value = Math.max(right, maxSum.value)
     if (n !== undefined) {
         // console.log("// n must be < 0: ", n);
@@ -102,15 +101,28 @@ const loop = (nums, maxSum) => {
 const narrowWay = (nums) => {
     // console.log("input numbers: ", nums);
     if (nums.every(n => n <= 0)) return nums.reduce((p, c) => Math.max(p, c));
-    const maxSum = { value: -Infinity }
+    const maxSum = {value: -Infinity}
     while (nums.length > 1) {
         nums = loop(nums, maxSum);
     }
     return Math.max(nums[0], maxSum.value);
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const dynamicProgramming = (nums) => {
+    let current = 0, max = -Infinity;
+    nums.forEach(num => {
+        current = Math.max(current + num, num)
+        max = Math.max(max, current);
+    });
+    return max;
+};
 
 module.exports = {
     maxSubArray,
-    narrowWay
+    narrowWay,
+    dynamicProgramming
 };
