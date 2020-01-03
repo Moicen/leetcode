@@ -34,22 +34,18 @@ const maxSubArray = (nums) => {
 
 
 const loop = (nums, maxSum) => {
-    // console.log('------------------loop nums: ', JSON.stringify(nums))
-    // console.log('------max sum: ', maxSum)
     // step 1: trim all negative numbers in head
     let num = nums.shift();
     while (num <= 0 && nums.length) {
         num = nums.shift();
     }
     nums.unshift(num);
-    // console.log("left trimmed: ", nums);
     // step 2: trim all negative numbers in tail
     num = nums.pop();
     while (num <= 0 && nums.length) {
         num = nums.pop();
     }
     nums.push(num);
-    // console.log("right trimmed: ", nums);
 
     let left = 0, n = nums.shift(), right = 0;
     // step 3: sum left nums
@@ -59,7 +55,6 @@ const loop = (nums, maxSum) => {
     }
     if (n !== undefined) nums.unshift(n);
     if (left) nums.unshift(left);
-    // console.log('left added: ', nums);
     maxSum.value = Math.max(left, maxSum.value)
 
     if (n !== undefined) {
@@ -70,7 +65,6 @@ const loop = (nums, maxSum) => {
             nums = nums.slice(2);
         }
     }
-    // console.log("left calc nums: ", nums);
     // step 4: sum right nums
     n = nums.pop();
     while (n !== undefined && n >= 0) {
@@ -88,9 +82,6 @@ const loop = (nums, maxSum) => {
             nums = nums.slice(0, nums.length - 2);
         }
     }
-    // console.log("right calc nums: ", nums);
-
-    // console.log("current loop final nums: ", nums);
     return nums;
 }
 
@@ -99,9 +90,8 @@ const loop = (nums, maxSum) => {
  * @return {number}
  */
 const narrowWay = (nums) => {
-    // console.log("input numbers: ", nums);
     if (nums.every(n => n <= 0)) return nums.reduce((p, c) => Math.max(p, c));
-    const maxSum = {value: -Infinity}
+    const maxSum = {value: -Infinity};
     while (nums.length > 1) {
         nums = loop(nums, maxSum);
     }
