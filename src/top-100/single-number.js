@@ -31,7 +31,7 @@ const singleNumber = function (nums) {
         if (!memory[num]) memory[num] = num;
         else delete memory[num];
     });
-    return Array.from(memory)[0];
+    return Object.values(memory)[0];
 };
 
 /**
