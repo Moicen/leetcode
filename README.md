@@ -4,7 +4,7 @@
 
 ## 章节
 - [X]  [二叉树](src/binary-tree/README.md)
-- [ ] [Top 100 problems](src/top-100/README.md) (8/100) 
+- [ ] [Top 100 problems](src/top-100/README.md) (14/100) 
 
 ## 测试
 ```bash
