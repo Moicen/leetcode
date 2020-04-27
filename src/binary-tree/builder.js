@@ -24,7 +24,7 @@ const build = (depth, values, cursor = 0) => {
 };
 
 const generate = () => {
-    let {depth} = read();
+    let { depth } = read();
     const values = [];
     return build(depth || 3, values);
 };

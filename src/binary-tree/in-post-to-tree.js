@@ -31,16 +31,16 @@ const recur = (inOrderList, postOrderList) => {
 };
 
 const recurWalk = (inValues, postValues) => {
-    let inOrderList = inValues.map(x => ({val: x}));
-    let postOrderList = postValues.map(x => ({val: x}));
+    let inOrderList = inValues.map(x => ({ val: x }));
+    let postOrderList = postValues.map(x => ({ val: x }));
     recur(inOrderList, postOrderList);
     return postOrderList[postOrderList.length - 1] || null;
 };
 
 const iterate = (inOrderList, postOrderList) => {
-    const stack = [{inOrderList, postOrderList}];
+    const stack = [{ inOrderList, postOrderList }];
     while (stack.length) {
-        let {inOrderList, postOrderList} = stack.pop();
+        let { inOrderList, postOrderList } = stack.pop();
         let root = postOrderList[postOrderList.length - 1];
         if (!root) continue;
         let index = inOrderList.findIndex(x => x.val === root.val);
@@ -52,14 +52,14 @@ const iterate = (inOrderList, postOrderList) => {
             rightPostOrderList = postOrderList.slice(leftInOrderList.length, total - 1);
         root.left = leftPostOrderList[leftPostOrderList.length - 1] || null;
         root.right = rightPostOrderList[rightPostOrderList.length - 1] || null;
-        stack.push({inOrderList: leftInOrderList, postOrderList: leftPostOrderList})
-        stack.push({inOrderList: rightInOrderList, postOrderList: rightPostOrderList})
+        stack.push({ inOrderList: leftInOrderList, postOrderList: leftPostOrderList });
+        stack.push({ inOrderList: rightInOrderList, postOrderList: rightPostOrderList });
     }
 };
 
 const iterateWalk = (inValues, postValues) => {
-    let inOrderList = inValues.map(x => ({val: x}));
-    let postOrderList = postValues.map(x => ({val: x}));
+    let inOrderList = inValues.map(x => ({ val: x }));
+    let postOrderList = postValues.map(x => ({ val: x }));
     iterate(inOrderList, postOrderList);
     return postOrderList[postOrderList.length - 1] || null;
 };

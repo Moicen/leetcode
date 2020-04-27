@@ -1,4 +1,4 @@
-const {t2bWalk, b2tWalk} = require('./max-depth');
+const { t2bWalk, b2tWalk } = require('./max-depth');
 
 const Tree = {
     "left": {

@@ -1,7 +1,7 @@
 const read = require('./arg').read;
 
 const run = () => {
-    let {subject, task} = read();
+    let { subject, task } = read();
     try {
         require(['..', subject, task].join('/'));
     } catch (e) {

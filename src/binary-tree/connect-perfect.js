@@ -12,7 +12,7 @@
 const recur = (root) => {
     if (!root) return;
 
-    let {left, right} = root;
+    let { left, right } = root;
     if (left) left.next = right || null;
     if (right) {
         let uncle = root.next;
@@ -33,7 +33,7 @@ const iterate = (root) => {
     let node;
     while ((node = stack.pop())) {
         routes.push(node);
-        let {left, right} = node;
+        let { left, right } = node;
         if (left && !routes.includes(left)) {
             left.next = right;
             stack.push(node);

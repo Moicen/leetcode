@@ -1,4 +1,4 @@
-const {recurWalk, iterateWalk} = require("./connect-perfect");
+const { recurWalk, iterateWalk } = require("./connect-perfect");
 
 const PerfectTree1 = {
     "$id": "1",

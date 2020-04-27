@@ -21,16 +21,16 @@ const recur = (origin, target) => {
 const iterate = (root) => {
     if (!root) return true;
 
-    const pairs = [{left: root.left, right: root.right}];
+    const pairs = [{ left: root.left, right: root.right }];
     while (pairs.length > 0) {
-        let {left, right} = pairs.pop();
+        let { left, right } = pairs.pop();
         if (!left && !right) {
             continue;
         }
         if (left && right) {
             if (left.val === right.val) {
-                pairs.push({left: left.left, right: right.right});
-                pairs.push({left: right.left, right: left.right})
+                pairs.push({ left: left.left, right: right.right });
+                pairs.push({ left: right.left, right: left.right });
                 continue;
             }
             return false;

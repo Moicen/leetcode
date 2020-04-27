@@ -30,16 +30,16 @@ const recur = (preOrderList, inOrderList) => {
 };
 
 const recurWalk = (preValues, inValues) => {
-    let preOrderList = preValues.map(x => ({val: x}));
-    let inOrderList = inValues.map(x => ({val: x}));
+    let preOrderList = preValues.map(x => ({ val: x }));
+    let inOrderList = inValues.map(x => ({ val: x }));
     recur(preOrderList, inOrderList);
     return preOrderList[0] || null;
 };
 
 const iterate = (preOrderList, inOrderList) => {
-    const stack = [{preOrderList, inOrderList}];
+    const stack = [{ preOrderList, inOrderList }];
     while (stack.length) {
-        let {preOrderList, inOrderList} = stack.pop();
+        let { preOrderList, inOrderList } = stack.pop();
         let root = preOrderList[0];
         if (!root) continue;
         let index = inOrderList.findIndex(x => x.val === root.val);
@@ -50,14 +50,14 @@ const iterate = (preOrderList, inOrderList) => {
             rightPreOrderList = preOrderList.slice(leftInOrderList.length + 1);
         root.left = leftPreOrderList[0] || null;
         root.right = rightPreOrderList[0] || null;
-        stack.push({preOrderList: leftPreOrderList, inOrderList: leftInOrderList});
-        stack.push({preOrderList: rightPreOrderList, inOrderList: rightInOrderList});
+        stack.push({ preOrderList: leftPreOrderList, inOrderList: leftInOrderList });
+        stack.push({ preOrderList: rightPreOrderList, inOrderList: rightInOrderList });
     }
 };
 
 const iterateWalk = (preValues, inValues) => {
-    let preOrderList = preValues.map(x => ({val: x}));
-    let inOrderList = inValues.map(x => ({val: x}));
+    let preOrderList = preValues.map(x => ({ val: x }));
+    let inOrderList = inValues.map(x => ({ val: x }));
     iterate(preOrderList, inOrderList);
     return preOrderList[0] || null;
 };

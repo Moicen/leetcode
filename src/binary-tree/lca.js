@@ -10,11 +10,11 @@ const Tree = {
     val: 3,
     left: {
         val: 5,
-        left: {val: 6},
-        right: {val: 2, left: {val: 7}, right: {val: 4}},
+        left: { val: 6 },
+        right: { val: 2, left: { val: 7 }, right: { val: 4 } },
     },
     right: {
-        val: 1, left: {val: 0}, right: {val: 8}
+        val: 1, left: { val: 0 }, right: { val: 8 }
     }
 };
 
@@ -23,7 +23,7 @@ const prepare = (nodes, p, q) => {
     if (nodes.length === 0) return {};
     let children = [];
     nodes.forEach(node => {
-        let {left, right, parent, val} = node;
+        let { left, right, parent, val } = node;
         if (p.val === val) p = node;
         if (q.val === val) q = node;
         node.depth = parent ? parent.depth + 1 : 1;
@@ -36,9 +36,9 @@ const prepare = (nodes, p, q) => {
             children.push(right);
         }
     });
-    let {x, y} = prepare(children, p, q);
+    let { x, y } = prepare(children, p, q);
 
-    return {x: x || p, y: y || q};
+    return { x: x || p, y: y || q };
 };
 
 const find = (p, q) => {
@@ -64,12 +64,12 @@ const clean = (node) => {
         clean(node.left);
         clean(node.right);
     }
-}
+};
 
 const lca = (tree, p, q) => {
     if (!tree) return null;
-    p = {val: p}, q = {val: q};
-    let {x, y} = prepare([tree], p, q);
+    p = { val: p }, q = { val: q };
+    let { x, y } = prepare([tree], p, q);
     let node = find(x, y);
     clean(node);
     return node;

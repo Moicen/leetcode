@@ -13,7 +13,7 @@ const run = require('./runner');
 
 const recur = (node, result) => {
     if (!node) return;
-    let {left, right} = node;
+    let { left, right } = node;
     if (left) {
         recur(left, result);
     }
@@ -29,7 +29,7 @@ const iterate = (root) => {
     let node = root;
     stack.push(node);
     while (node) {
-        let {left, right} = node;
+        let { left, right } = node;
         if (left && !result.includes(left)) {
             stack.push(node);
             node = left;

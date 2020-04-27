@@ -7,7 +7,7 @@
 const b2t = (node, depth) => {
     if (!node) return depth;
     depth += 1;
-    let {left, right} = node;
+    let { left, right } = node;
     return Math.max(b2t(left, depth), b2t(right, depth));
 };
 
@@ -19,9 +19,9 @@ class T2b {
 
     walk(node, depth) {
         if (!node) return;
-        let {left, right} = node;
+        let { left, right } = node;
         if (!left && !right) {
-            this.answer = Math.max(depth, this.answer)
+            this.answer = Math.max(depth, this.answer);
         }
         this.walk(left, depth + 1);
         this.walk(right, depth + 1);

@@ -17,11 +17,11 @@ const recur = (nodes, result) => {
     result.push(nodes.map(x => x.val));
     let children = [];
     nodes.forEach(node => {
-        let {left, right} = node;
+        let { left, right } = node;
         if (left) children.push(left);
         if (right) children.push(right);
     });
-    recur(children, result)
+    recur(children, result);
 };
 
 const iterate = (root) => {
@@ -31,7 +31,7 @@ const iterate = (root) => {
     result.push(parent.map(x => x.val));
     while (parent.length) {
         parent.forEach(node => {
-            let {left, right} = node;
+            let { left, right } = node;
             if (left) current.push(left);
             if (right) current.push(right);
         });

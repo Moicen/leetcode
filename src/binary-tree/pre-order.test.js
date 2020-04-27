@@ -1,4 +1,4 @@
-const {recurWalk, iterateWalk} = require('./pre-order');
+const { recurWalk, iterateWalk } = require('./pre-order');
 
 const Tree = {
     "left": {
@@ -43,9 +43,9 @@ const Tree = {
 };
 
 test('traverse binary tree in pre-order with recur', () => {
-    expect(recurWalk(Tree)).toEqual([0, 3, 4, 1, 17, 7, 5, 23, 25, 2])
+    expect(recurWalk(Tree)).toEqual([0, 3, 4, 1, 17, 7, 5, 23, 25, 2]);
 });
 
 test('traverse binary tree in pre-order with iterate', () => {
-    expect(iterateWalk(Tree)).toEqual([0, 3, 4, 1, 17, 7, 5, 23, 25, 2])
+    expect(iterateWalk(Tree)).toEqual([0, 3, 4, 1, 17, 7, 5, 23, 25, 2]);
 });

@@ -1,4 +1,4 @@
-const {serialize, deserialize} = require('./serialization');
+const { serialize, deserialize } = require('./serialization');
 
 const Tree = {
     "left": {

@@ -13,19 +13,19 @@ const run = require('./runner');
  */
 
 const tree = {
-    left: {val: -2, left: {val: 1, left: {val: -1}}, right: {val: 3}},
-    right: {val: 3, left: {val: -2}},
+    left: { val: -2, left: { val: 1, left: { val: -1 } }, right: { val: 3 } },
+    right: { val: 3, left: { val: -2 } },
     val: 1
 };
 
 const recur = (node, sum) => {
     if (!node) return false;
-    let {left, right, val} = node;
+    let { left, right, val } = node;
     let difference = sum - val;
     if (difference === 0 && !left && !right) {
         return true;
     }
-    return recur(left, difference) || recur(right, difference)
+    return recur(left, difference) || recur(right, difference);
 };
 
 
@@ -33,7 +33,7 @@ let sum = Math.floor(Math.random() * 30);
 const recurWalk = (tree) => {
     // let sum = Math.floor(Math.random() * 30);
     // let sum = -1;
-    console.log("tree: ", tree)
+    console.log("tree: ", tree);
     console.log('sum: ', sum);
     return recur(tree, sum);
 };
@@ -47,7 +47,7 @@ const iterate = (root, sum) => {
         if (!tried.includes(node)) {
             tried.push(node);
         }
-        let {left, right} = node;
+        let { left, right } = node;
 
         if (left && !tried.includes(left)) {
             node = left;
@@ -59,7 +59,7 @@ const iterate = (root, sum) => {
         }
 
         if (!left && !right) {
-            if (stack.reduce((a, c) => ({val: a.val + c.val})).val === sum) {
+            if (stack.reduce((a, c) => ({ val: a.val + c.val })).val === sum) {
                 return true;
             }
         }
@@ -73,7 +73,7 @@ const iterate = (root, sum) => {
 
 const iterateWalk = (tree) => {
     // let sum = Math.floor(Math.random() * 30);
-    console.log("tree: ", tree)
+    console.log("tree: ", tree);
     console.log('sum: ', sum);
     return iterate(tree, sum);
 };

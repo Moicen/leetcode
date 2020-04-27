@@ -1,4 +1,4 @@
-const {recurWalk, iterateWalk} = require("./connect");
+const { recurWalk, iterateWalk } = require("./connect");
 
 const Tree1 = {
     "$id": "1",

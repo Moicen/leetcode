@@ -29,7 +29,7 @@ const iterate = (root) => {
 
     while (node) {
         if (!result.includes(node)) result.push(node);
-        let {left, right} = node;
+        let { left, right } = node;
         if (left && !result.includes(left)) {
             stack.push(node);
             node = left;

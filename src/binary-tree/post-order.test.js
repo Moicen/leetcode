@@ -1,4 +1,4 @@
-const {recurWalk, iterateWalk} = require('./post-order');
+const { recurWalk, iterateWalk } = require('./post-order');
 
 const Tree = {
     "left": {
@@ -47,9 +47,9 @@ const Tree = {
 };
 
 test('traverse binary tree in post-order with recur', () => {
-    expect(recurWalk(Tree)).toEqual([4, 2, 7, 16, 22, 5, 29, 30, 1, 8, 0])
+    expect(recurWalk(Tree)).toEqual([4, 2, 7, 16, 22, 5, 29, 30, 1, 8, 0]);
 });
 
 test('traverse binary tree in post-order with iterate', () => {
-    expect(iterateWalk(Tree)).toEqual([4, 2, 7, 16, 22, 5, 29, 30, 1, 8, 0])
+    expect(iterateWalk(Tree)).toEqual([4, 2, 7, 16, 22, 5, 29, 30, 1, 8, 0]);
 });

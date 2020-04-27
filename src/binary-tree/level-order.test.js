@@ -1,4 +1,4 @@
-const {recurWalk, iterateWalk} = require('./level-order');
+const { recurWalk, iterateWalk } = require('./level-order');
 
 const Tree = {
     "left": {
@@ -35,9 +35,9 @@ const Tree = {
 };
 
 test('traverse binary tree in level-order with recur', () => {
-    expect(recurWalk(Tree)).toEqual([[0], [3, 5], [15, 19], [24, 9], [4]])
+    expect(recurWalk(Tree)).toEqual([[0], [3, 5], [15, 19], [24, 9], [4]]);
 });
 
 test('traverse binary tree in level-order with iterate', () => {
-    expect(iterateWalk(Tree)).toEqual([[0], [3, 5], [15, 19], [24, 9], [4]])
+    expect(iterateWalk(Tree)).toEqual([[0], [3, 5], [15, 19], [24, 9], [4]]);
 });

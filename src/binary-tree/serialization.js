@@ -16,20 +16,20 @@ const run = require("./runner");
 
 const Tree = {
     val: 1,
-    left: {val: 2},
+    left: { val: 2 },
     right: {
         val: 3,
-        left: {val: 4},
-        right: {val: 5}
+        left: { val: 4 },
+        right: { val: 5 }
     }
 };
 
 const rightTree = () => {
-    let root = {val: 1}, cur = 2, node = root;
+    let root = { val: 1 }, cur = 2, node = root;
     while (cur <= 1000) {
-        node.right = {val: cur};
+        node.right = { val: cur };
         node = node.right;
-        cur++
+        cur++;
     }
     return root;
 };
@@ -46,9 +46,9 @@ const serialize = (root) => {
     while (nodes.length) {
         let children = [];
         nodes.forEach(node => {
-            let {left, right, parent = null, val, side = null} = node;
+            let { left, right, parent = null, val, side = null } = node;
             let id = Math.random().toString(16).replace('.', '');
-            result.push({val, parent, side, id});
+            result.push({ val, parent, side, id });
             if (left) {
                 left.parent = id;
                 left.side = "left";
@@ -85,10 +85,10 @@ const clean = (node) => {
 const deserialize = (data) => {
     let nodes = JSON.parse(data);
     if (nodes.length === 0) return null;
-    let {val, id} = nodes.shift(), root = {val, id, left: null, right: null}, parents = [root];
-    nodes.forEach(({val, parent, side, id}) => {
+    let { val, id } = nodes.shift(), root = { val, id, left: null, right: null }, parents = [root];
+    nodes.forEach(({ val, parent, side, id }) => {
         let p = parents.find(x => x.id === parent);
-        let node = {val, id, left: null, right: null};
+        let node = { val, id, left: null, right: null };
         p[side] = node;
         parents.push(node);
     });
