@@ -1,7 +1,9 @@
 const {
     sortedArrayToBST, maxDepth, rangeSumBST, kthLargest, lowestCommonAncestor,
     leafSimilar, isSameTree, isCousins, getAllElements, removeLeafNodes, kthSmallest,
-    FindElements, insertIntoBST, pathInZigZagTree, lcaDeepestLeaves, sumNumbers
+    FindElements, insertIntoBST, pathInZigZagTree, lcaDeepestLeaves, sumNumbers,
+    pseudoPalindromicPaths, convertBST, mctFromLeafValues, findRedundantConnection,
+    CBTInserter
 } = require('./section-1')
 
 
@@ -185,4 +187,63 @@ let tree13 = { val: 1, left: {val: 2}, right: {val: 3} }
 
 test("sum numbers", () => {
     expect(sumNumbers(tree13)).toEqual(25)
+})
+
+
+let tree14 = { val: 9 }
+let tree14_1 = {
+    val: 2,
+    left: {val:3, left: {val: 3,}, right: {val: 1}},
+    right: {val: 1, right: {val: 1}}
+}
+let tree14_2 = {
+    val: 2,
+    left: {val: 1, left: {val: 1}, right: {val: 3, right: {val: 1}}},
+    right: {val: 1}
+}
+
+
+test("pseudo palindromic paths", () => {
+    expect(pseudoPalindromicPaths(tree14)).toEqual(1)
+    expect(pseudoPalindromicPaths(tree14_1)).toEqual(2)
+    expect(pseudoPalindromicPaths(tree14_2)).toEqual(1)
+})
+
+let tree15 = {
+    val: 4,
+    left: {val: 1, left: {val: 0}, right: {val: 2, right: {val: 3}}},
+    right: {val: 6, left: {val: 5}, right: {val: 7, right: {val: 8}}}
+}
+
+test("convert bst", () => {
+    console.log(convertBST(tree15))
+})
+
+test("mct from array", () => {
+    // expect(mctFromLeafValues([6,2,4])).toEqual(32)
+    // expect(mctFromLeafValues([7,12,8,10])).toEqual(284)
+    expect(mctFromLeafValues([15,13,3,4,2,8,3,11,3,3,9,14,2,6,4,12,1,14])).toEqual(1318)
+})
+
+test("find redundant connection", () => {
+    expect(findRedundantConnection([[1,5],[3,4],[3,5],[4,5],[2,4]])).toEqual([4, 5])
+})
+
+let tree16 = {
+    val: 1,
+    left: {val: 2, left: {val: 4}, right: {val: 5}},
+    right: {val: 3, left: {val: 6}}
+}
+let tree17 = { val: 1 }
+test("complete binary tree insert", () => {
+    // let cbt = new CBTInserter(tree16);
+    // expect(cbt.insert(7)).toEqual(3)
+    // expect(cbt.insert(8)).toEqual(4)
+    // console.log(cbt.get_root())
+    let cbt1 = new CBTInserter(tree17);
+    expect(cbt1.insert(2)).toEqual(1)
+    expect(cbt1.insert(3)).toEqual(1)
+    expect(cbt1.insert(4)).toEqual(2)
+    expect(cbt1.insert(5)).toEqual(2)
+    console.log(cbt1.get_root())
 })

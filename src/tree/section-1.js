@@ -419,8 +419,217 @@ var sumNumbers = function(root) {
     return sum;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var pseudoPalindromicPaths  = function(root) {
+
+    const paths = []
+
+    const recur = (node, path) => {
+        if(!node) return ;
+
+        path.push(node.val)
+
+        if(!node.left && !node.right) {
+            paths.push([...path])
+        } else {
+            recur(node.left, path)
+            recur(node.right, path)
+        }
+
+        path.pop()
+    }
+
+    recur(root, [])
+    console.log(paths)
+
+    let count = 0;
+
+    paths.forEach(path => {
+        let hash = new Map()
+        path.forEach(val => {
+            hash.set(val, (hash.get(val) || 0) + 1)
+        })
+
+        let odds = 0
+        hash.forEach((value) => {
+            if(value % 2) odds++
+        })
+        if(odds <= 1) count++
+    })
+
+    return count;
+};
+
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var convertBST = function(root) {
+
+
+    const recur = (node, prevSum) => {
+        if(!node) return 0;
+        let cur = node.val + (recur(node.right, prevSum) || prevSum)
+        let left = recur(node.left, cur)
+        node.val = cur;
+        return cur + left;
+    }
+
+    recur(root, 0)
+
+    return root
+};
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var mctFromLeafValues = function(arr) {
+
+    if(arr.length < 2) return 0;
+
+    let memo = {}
+    const recur = (nums) => {
+        let len = nums.length;
+        if(!len) return { sum: 0, max: 0 }
+        if(len === 1) return {sum: 0, max: nums[0]};
+        if(len === 2) {
+            let [first, last] = nums;
+            return {sum: first * last, max: Math.max(first, last)}
+        }
+        let sum = Infinity, max = 0
+        for(let i = 1; i < nums.length; i++) {
+            let lefts = nums.slice(0, i);
+            let rights = nums.slice(i);
+            let lk = lefts.join('-'), rk = rights.join('-')
+            let l = memo[lk] || recur(lefts),
+                r = memo[rk] || recur(rights)
+            memo[lk] = l;
+            memo[rk] = r
+            let s = l.sum + r.sum + l.max * r.max
+            sum = Math.min(s, sum);
+            max = Math.max(max, l.max, r.max)
+        }
+        return { sum, max }
+    }
+
+    return recur(arr).sum
+};
+
+/**
+ * @param {number[][]} edges
+ * @return {number[]}
+ */
+var findRedundantConnection = function(edges) {
+
+    let fa = [], index = -1;
+
+    const upgrade = (f, children, plusOne = false) => {
+        if(plusOne) f.depth++;
+        f.children = [...new Set(children)]
+        f.children.forEach(c => {
+            fa[c] = f;
+        })
+    }
+
+    for(let i = 0; i < edges.length; i++) {
+        let [n1, n2] = edges[i];
+        let f1 = fa[n1], f2 = fa[n2]
+        console.log(n1, n2, f1, f2)
+        if(!f1 && !f2) {
+            fa[n1] = fa[n2] = { val: n1, depth: 1, children: [n1, n2] }
+            continue;
+        }
+
+        if(f1 && f2) {
+            if(f1.val === f2.val) {
+                index = i;
+                break;
+            }
+            upgrade(f1.depth < f2.depth ? f1 : f2, [...f1.children, ...f2.children], f1.depth === f2.depth)
+            continue;
+        }
+        upgrade(f1 || f2, [...(f1 || f2).children, n1, n2], true)
+    }
+
+    return edges[index]
+};
+
+/**
+ * @param {TreeNode} root
+ */
+var CBTInserter = function(root) {
+    let nodes = []
+    let queue = [root]
+    while(queue.length){
+        let len = queue.length;
+        let row = []
+        while(len--) {
+            let node = queue.shift();
+            row.push(node)
+            if(node.left) queue.push(node.left)
+            if(node.right) queue.push(node.right)
+        }
+        nodes.push(row)
+        if(nodes.length > 2) nodes.shift();
+    }
+    this.nodes = nodes;
+    this.root = root;
+};
+
+/**
+ * @param {number} v
+ * @return {number}
+ */
+CBTInserter.prototype.insert = function(v) {
+    let node = {val: v, left: null, right:null}
+    let last1 = this.nodes.pop(), last2 = this.nodes.pop();
+    let parent = null;
+    if(!last2) {
+        parent = this.root;
+        parent.left = node;
+        last2 = last1;
+        last1 = [node];
+    } else {
+        // 最后一层已满
+        if(last1.length === 2 * last2.length) {
+            parent = last1[0];
+            parent.left = node;
+            last2 = last1;
+            last1 = [node]
+        } else {
+            for(let i = 0; i < last2.length; i++){
+                let n = last2[i]
+                if(!n.left || !n.right) {
+                    parent = n
+                    break;
+                }
+            }
+            if(!parent.left) parent.left = node;
+            else if(!parent.right) parent.right = node;
+            last1.push(node)
+        }
+    }
+
+
+    this.nodes.push(last2, last1)
+    return parent.val;
+};
+
+/**
+ * @return {TreeNode}
+ */
+CBTInserter.prototype.get_root = function() {
+    return this.root;
+};
+
 module.exports = {
     sortedArrayToBST, maxDepth, rangeSumBST, kthLargest, lowestCommonAncestor,
     leafSimilar, isSameTree, isCousins, getAllElements, removeLeafNodes, kthSmallest,
-    FindElements, insertIntoBST, pathInZigZagTree, lcaDeepestLeaves, sumNumbers
+    FindElements, insertIntoBST, pathInZigZagTree, lcaDeepestLeaves, sumNumbers,
+    pseudoPalindromicPaths, convertBST, mctFromLeafValues, findRedundantConnection,
+    CBTInserter
 };
