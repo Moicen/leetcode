@@ -83,6 +83,27 @@ const countAndSay = function(n) {
     return result + `${count}${prev}`;
 };
 
+const checkPossibility = function(nums) {
+
+    if(nums.length <= 2) return true;
+
+    let prev = -Infinity, alter = -Infinity;
+    for(let i = 0; i < nums.length - 1; i++){
+        let cur = nums[i], next = nums[i + 1];
+        if(prev < 0) prev = cur;
+        if(cur > next) {
+            alter = prev;
+            prev = cur;
+        }
+        if(alter > next && prev > next) return false
+    }
+
+    return true;
+};
+
+
+
 module.exports = {
-    reverse: sundry, isPalindrome, removeElement, strStr, countAndSay
+    reverse: sundry, isPalindrome, removeElement, strStr, countAndSay, checkPossibility,
+
 };

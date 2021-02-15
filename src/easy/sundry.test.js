@@ -1,4 +1,6 @@
-const { reverse, isPalindrome, removeElement, strStr, countAndSay } = require("./sundry");
+const {
+    reverse, isPalindrome, removeElement, strStr, countAndSay, checkPossibility,
+} = require("./sundry");
 
 
 
@@ -32,3 +34,14 @@ test("count and say", () => {
     expect(countAndSay(4)).toEqual("1211");
     expect(countAndSay(5)).toEqual("111221");
 });
+
+test("check possibility", () => {
+    // expect(checkPossibility([4, 2, 3])).toBeTruthy();
+    // expect(checkPossibility([4, 2, 1])).toBeFalsy();
+    expect(checkPossibility([3, 4, 2, 3])).toBeFalsy();
+})
+
+
+
+
+

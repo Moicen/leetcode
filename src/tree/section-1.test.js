@@ -3,7 +3,7 @@ const {
     leafSimilar, isSameTree, isCousins, getAllElements, removeLeafNodes, kthSmallest,
     FindElements, insertIntoBST, pathInZigZagTree, lcaDeepestLeaves, sumNumbers,
     pseudoPalindromicPaths, convertBST, mctFromLeafValues, findRedundantConnection,
-    CBTInserter
+    CBTInserter, levelOrder, rob, printTree, path_sum, zigzagLevelOrder
 } = require('./section-1')
 
 
@@ -246,4 +246,61 @@ test("complete binary tree insert", () => {
     expect(cbt1.insert(4)).toEqual(2)
     expect(cbt1.insert(5)).toEqual(2)
     console.log(cbt1.get_root())
+})
+
+let tree18 = {val: 3, left: {val: 9}, right: {val: 20, left: {val: 15}, right: {val: 7}}}
+
+test("level order", () => {
+    console.log(levelOrder(tree18))
+    expect(levelOrder(tree18)).toEqual([[3],[20,9],[15,7]])
+})
+
+let tree19 = {val: 3, left: {val: 2, right: {val: 3}}, right: {val: 3, right: {val: 1}}}
+let tree20 = {
+    val: 3,
+    left: { val: 4, left: {val: 1}, right: {val: 3} },
+    right: {val: 5, right: {val: 1}}
+}
+let tree21 = {val: 2, left: {val: 1, right: {val: 4}}, right: {val: 3}}
+
+test("rob III", () => {
+    expect(rob(tree19)).toBe(7)
+    expect(rob(tree20)).toBe(9)
+    expect(rob(tree21)).toBe(7)
+})
+
+let tree22 = {val: 1, left: {val: 2}}
+let tree23 = { val: 1, left: {val: 2, right: {val: 4}}, right: {val: 3}}
+let tree24 = {val: 1, left: {val: 2, left: {val: 3, left: {val: 4}}}, right: {val: 5}}
+let tree25 = {val: 5, left: {val: 3, left: {val: 2}, right: {val: 4}}, right: {val: 6, right: {val: 7}}}
+
+test("print tree", () => {
+    expect(printTree(tree22)).toEqual([["", "1", ""], ["2", "", ""]])
+    expect(printTree(tree23)).toEqual([["", "", "", "1", "", "", ""], ["", "2", "", "", "", "3", ""], ["", "", "4", "", "", "", ""]])
+    expect(printTree(tree24)).toEqual([["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""],["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""],["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""],["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]])
+    expect(printTree(tree25)).toEqual([["","","","5","","",""],["","3","","","","6",""],["2","","4","","","","7"]])
+})
+
+
+let tree26 = {
+    val: 5,
+    left: {
+        val: 4,
+        left: { val: 11, left: {val: 7}, right: {val: 2} }
+    },
+    right: {
+        val: 8,
+        left: {val: 13},
+        right: {val: 4, left: {val: 5}, right: {val: 1}}
+    }
+}
+
+test("path sum", () => {
+    expect(path_sum(tree26, 22)).toEqual([[5, 4, 11, 2], [5, 8, 4, 5]])
+})
+
+let tree27 = { val: 3, left: {val: 9}, right: {val: 20, left: {val: 15}, right: {val: 7}}}
+
+test("zigzag level order", () => {
+    expect(zigzagLevelOrder(tree27)).toEqual([[3], [20, 9], [15, 7]])
 })
